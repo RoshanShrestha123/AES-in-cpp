@@ -10,10 +10,14 @@ void generate_state_arr(std::string text, std::vector<char>& vec) {
   }
 }
 
-void printArr(char arr[LMT_STATE_ARR]) {
-  for (int i = 0; i < LMT_STATE_ARR; i++) {
-    std::cout << arr[i];
+// implement xor
+std::vector<char> xor_arr(std::vector<char>& vec1, std::vector<char>& vec2) {
+  std::vector<char> xor_data;
+  for (int i = 0; i < vec1.size(); i++) {
+    xor_data.push_back(vec1[i] ^ vec2[i]);
   }
+
+  return xor_data;
 }
 
 int main() {
@@ -22,6 +26,8 @@ int main() {
 
   std::vector<char> value_state;
   std::vector<char> round_key_state;
+
+  std::vector<char> round_key_1 = xor_arr(value_state, round_key_state);
 
   return 0;
 }
