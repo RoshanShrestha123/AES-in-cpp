@@ -5,28 +5,9 @@
 #include <sstream>
 #include <vector>
 
+#include "include/conversion.h"
+
 const int LMT_STATE_ARR = 16;  // byte
-
-std::string convert_hex_to_string(std::string hex) {
-  std::string ascii;
-  for (int i = 0; i < hex.length(); i += 2) {
-    std::string part = hex.substr(i, 2);
-    char ch = std::stoul(part, nullptr, 16);
-    ascii += ch;
-  }
-
-  return ascii;
-}
-
-std::string convert_string_to_hex(std::string input_str) {
-  std::stringstream sso;
-  for (int i = 0; i < input_str.length(); i++) {
-    sso << std::hex << static_cast<int>(static_cast<char>(input_str[i]));
-  }
-
-  std::string string_hex = sso.str();
-  return string_hex;
-}
 
 void key_schedule_core(std::string key) {
   std::string converted_key_hex = convert_string_to_hex(key);
@@ -52,13 +33,6 @@ std::vector<char> xor_arr(std::vector<char>& vec1, std::vector<char>& vec2) {
 int main() {
   std::string input = "Hey this is a test";
   std::string key_128 = "abcdefghijklmnopqrstuvwxyz";
-
   key_schedule_core(key_128);
-
-  // std::vector<char> value_state;
-  // std::vector<char> round_key_state;
-
-  // std::vector<char> round_key_1 = xor_arr(value_state, round_key_state);
-
   return 0;
 }
