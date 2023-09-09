@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #include <bitset>
 #include <iostream>
 #include <sstream>
@@ -18,18 +20,17 @@ std::string convert_hex_to_string(std::string hex) {
 
 std::string convert_string_to_hex(std::string input_str) {
   std::stringstream sso;
-  std::string string_hex;
-  std::string ascii;
   for (int i = 0; i < input_str.length(); i++) {
-    sso << std::hex << (int)input_str[i];
+    sso << std::hex << static_cast<int>(static_cast<char>(input_str[i]));
   }
-  sso >> string_hex;
+
+  std::string string_hex = sso.str();
   return string_hex;
 }
 
 void key_schedule_core(std::string key) {
-  std::string hex_string = convert_string_to_hex(key);
-  std::cout << hex_string << std::endl;
+  std::string converted_key_hex = convert_string_to_hex(key);
+  std::cout << converted_key_hex << std::endl;
 }
 
 void generate_state_arr(std::string text, std::vector<char>& vec) {
