@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 
@@ -20,4 +21,12 @@ std::string convert_hex_to_string(std::string hex) {
   }
 
   return ascii;
+}
+
+void print_header(std::string title = "Title", bool isSubHeader = true) {
+  std::cout << std::setfill(isSubHeader ? '-' : '#') << std::setw(20) << ""
+            << std::endl;
+  std::cout << title << std::endl;
+  std::cout << std::setfill(isSubHeader ? '-' : '#') << std::setw(20) << ""
+            << std::endl;
 }
