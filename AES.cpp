@@ -49,6 +49,8 @@ void key_schedule_core(std::string key) {
   for (std::string chunk : sub_chunk_words) {
     std::cout << chunk << " " << std::endl;
   }
+  // RCON & T calculation
+  // WIP: wi = w[i-1] ^ w[i-4];
 }
 
 // implement xor
